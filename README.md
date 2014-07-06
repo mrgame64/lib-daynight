@@ -1,8 +1,13 @@
 lib-daynight
 ============
 
-A library for a realistic day-night cycle simulation.
+Sunrise/sunset time calculation library.
 
-It's been designed for games, but there isn't any counter-indication for use in other applications.
+Given a date and geographic coordinates, it allows to calculate the time of sunset and sunrise on the given day, in the given location.
 
 The implementation language is JS, for its good readability and portability of code.
+
+
+TODO:
+===========
+ - Write implementations in various other popular languages (C, C++, Java)
