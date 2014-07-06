@@ -10,4 +10,6 @@ The implementation language is JS, for its good readability and portability of c
 
 TODO:
 ===========
+ - Comment better the functions
+ - Add more converting functions
  - Write implementations in various other popular languages (C, C++, Java)
