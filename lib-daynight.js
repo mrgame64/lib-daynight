@@ -1,17 +1,28 @@
 //Library functions
+
+function getSunrise_date(day, month, year, latitude, longitude) 
+{
+	
+}
+
+//The hell does this return? I forgot! D:
 function getSunset_epoch(millis, latitude, longitude)
 {
   data = sunriseCalculus(millis/1000.0, latitude, longitude);
   
   //Sunrise
-  Jset =  2451545.0009 + (data.Wo + longitude) / 360 + data.n + 0.0053 * Math.sin(data.M) - 0.0069 * Math.sin(2*data.y);
+  Jset = 2451545.0009 + (data.Wo + longitude) / 360 + data.n + 0.0053 * Math.sin(data.M) - 0.0069 * Math.sin(2*data.y);
   
   return julianToEpoch(Jset);
 }
 
 function getSunrise_epoch(millis, latitude, longitude)
 {
-  Jrise = data.Jtransit - ( epochToJulian(getSunrise_epoch(millis, latitude, longitude)) - data.Jtransit);
+  data = sunriseCalculus(millis/1000.0, latitude, longitude);
+  
+  Jset = 2451545.0009 + (data.Wo + longitude) / 360 + data.n + 0.0053 * Math.sin(data.M) - 0.0069 * Math.sin(2*data.y);
+	
+  Jrise = data.Jtransit - ( Jset - data.Jtransit);
   return julianToEpoch(Jrise);
 }
 
@@ -63,6 +74,3 @@ function sunriseCalculus(seconds, latitude, longitude)
   
   return data;
 }
-
-
-console.log(new Time(getSunrise_epoch(Time.now, 45.779818, 11.808588)));
