@@ -1,15 +1,18 @@
 //Library functions
-function getSunrise_epoch(millis, latitude, longitude)
+function getSunset_epoch(millis, latitude, longitude)
 {
   data = sunriseCalculus(millis/1000.0, latitude, longitude);
   
   //Sunrise
-  return 2451545.0009 + (data.Wo + longitude) / 360 + data.n + 0.0053 * Math.sin(data.M) - 0.0069 * Math.sin(2*data.y);
+  Jset =  2451545.0009 + (data.Wo + longitude) / 360 + data.n + 0.0053 * Math.sin(data.M) - 0.0069 * Math.sin(2*data.y);
+  
+  return julianToEpoch(Jset);
 }
 
-function getSunset_epoch(millis, latitude, longitude)
+function getSunrise_epoch(millis, latitude, longitude)
 {
-  return data.Jtransit - ( getSunrise_epoch(millis, latitude, longitude) - data.Jtransit);
+  Jrise = data.Jtransit - ( epochToJulian(getSunrise_epoch(millis, latitude, longitude)) - data.Jtransit);
+  return julianToEpoch(Jrise);
 }
 
 
