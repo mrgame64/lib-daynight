@@ -4,7 +4,7 @@ function getSunrise_epoch(millis, latitude, longitude)
   data = sunriseCalculus(millis/1000.0, latitude, longitude);
   
   //Sunrise
-  return 2451545.0009 + (data.Wo + longitude) / 360 + n + 0.0053 * Math.sin(data.M) - 0.0069 * Math.sin(2*data.y);
+  return 2451545.0009 + (data.Wo + longitude) / 360 + data.n + 0.0053 * Math.sin(data.M) - 0.0069 * Math.sin(2*data.y);
 }
 
 function getSunset_epoch(millis, latitude, longitude)
