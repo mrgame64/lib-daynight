@@ -64,7 +64,7 @@ function sunriseCalculus(seconds, latitude, longitude)
   
   //Hour angle
   data.cosWo = ( Math.sin(-0.83) - Math.sin(latitude) * data.sinDelta ) / ( Math.cos(latitude) * Math.cos(data.delta) );
-  data.Wo = Math.acos(data.cosWo);
+  data.Wo = Math.acos(data.cosWo); //a bug occurs here, cosWo shouldn't have its abs value greater than 1
   
   return data;
 }
