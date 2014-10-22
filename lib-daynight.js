@@ -1,3 +1,19 @@
+//Library functions
+function getSunrise_epoch(millis, latitude, longitude)
+{
+  data = sunriseCalculus(millis/1000.0, latitude, longitude);
+  
+  //Sunrise
+  return 2451545.0009 + (data.Wo + longitude) / 360 + n + 0.0053 * Math.sin(data.M) - 0.0069 * Math.sin(2*data.y);
+}
+
+function getSunset_epoch(millis, latitude, longitude)
+{
+  return data.Jtransit - ( getSunrise_epoch(millis, latitude, longitude) - data.Jtransit);
+}
+
+
+
 //Utils
 function epochToJulian(seconds)
 {
@@ -45,21 +61,5 @@ function sunriseCalculus(seconds, latitude, longitude)
   return data;
 }
 
-//Library functions
-function getSunrise_epoch(seconds, latitude, longitude)
-{
-  data = sunriseCalculus(seconds, latitude, longitude);
-  
-  //Sunrise
-  return 2451545.0009 + (data.Wo + longitude) / 360 + n + 0.0053 * Math.sin(data.M) - 0.0069 * Math.sin(2*data.y);
-}
 
-function getSunset_epoch(seconds, latitude, longitude)
-{
-  data = sunriseCalculus(seconds, latitude, longitude);
-  
-  //Sunrise
-  Jset = 2451545.0009 + (data.Wo + longitude) / 360 + n + 0.0053 * Math.sin(data.M) - 0.0069 * Math.sin(2*data.y);
-  
-  return data.Jtransit - ( Jset - data.Jtransit);
-}
+console.log(new Time(getSunrise_epoch(Time.now, 45.779818, 11.808588)));
