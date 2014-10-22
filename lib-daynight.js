@@ -1,31 +1,25 @@
 //Library functions
 
-function getSunrise_date(day, month, year, latitude, longitude) 
-{
-	
-}
-
 //The hell does this return? I forgot! D:
 function getSunset_epoch(millis, latitude, longitude)
 {
-  data = sunriseCalculus(millis/1000.0, latitude, longitude);
+  var data = sunriseCalculus(millis/1000.0, latitude, longitude);
   
   //Sunrise
-  Jset = 2451545.0009 + (data.Wo + longitude) / 360 + data.n + 0.0053 * Math.sin(data.M) - 0.0069 * Math.sin(2*data.y);
+  var Jset = 2451545.0009 + (data.Wo + longitude) / 360 + data.n + 0.0053 * Math.sin(data.M) - 0.0069 * Math.sin(2*data.y);
   
   return julianToEpoch(Jset);
 }
 
 function getSunrise_epoch(millis, latitude, longitude)
 {
-  data = sunriseCalculus(millis/1000.0, latitude, longitude);
+  var data = sunriseCalculus(millis/1000.0, latitude, longitude);
   
-  Jset = 2451545.0009 + (data.Wo + longitude) / 360 + data.n + 0.0053 * Math.sin(data.M) - 0.0069 * Math.sin(2*data.y);
+  var Jset = 2451545.0009 + (data.Wo + longitude) / 360 + data.n + 0.0053 * Math.sin(data.M) - 0.0069 * Math.sin(2*data.y);
 	
-  Jrise = data.Jtransit - ( Jset - data.Jtransit);
+  var Jrise = data.Jtransit - ( Jset - data.Jtransit);
   return julianToEpoch(Jrise);
 }
-
 
 
 //Utils
@@ -41,7 +35,7 @@ function julianToEpoch(julian)
 
 function sunriseCalculus(seconds, latitude, longitude)
 {
-  data = {};
+  var data = {};
   
   //Julian date
   data.Jdate = epochToJulian(seconds);
@@ -54,12 +48,12 @@ function sunriseCalculus(seconds, latitude, longitude)
   data.Jnoon = 2451545.0009 + longitude / 360 + data.n;
   
   //Solar mean anomaly
-  data.M = ( 357.5291 + 0.98560028 * ( data.Jnoon - 2451545)) & 360;
+  data.M = ( 357.5291 + 0.98560028 * ( data.Jnoon - 2451545)) % 360;
   
   //Equation of center
   data.C = 1.9148 * Math.sin(data.M) + 0.0200 * Math.sin(2*data.M) + 0.0003 * Math.sin(3*data.M);
   //Ecliptic longitude
-  data.y = ( data.M + 102.9372 + data.C + 180 ) & 360;
+  data.y = ( data.M + 102.9372 + data.C + 180 ) % 360;
   
   //Solar transit
   data.Jtransit = data.Jnoon + 0.0053 * Math.sin(data.M) - 0.0069 * Math.sin(2*data.y);
