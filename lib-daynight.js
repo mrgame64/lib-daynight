@@ -21,6 +21,10 @@ function getSunrise_epoch(millis, latitude, longitude)
   return julianToEpoch(Jrise);
 }
 
+//Math constants (degrees)
+PI = Math.PI;
+degToRad = PI/180;
+radToDeg = 180/PI;
 
 //Utils
 function epochToJulian(seconds)
