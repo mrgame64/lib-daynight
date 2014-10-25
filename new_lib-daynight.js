@@ -11,6 +11,15 @@ function getSunrise(day, month, year, latitude, longitude)
 	//Sun's mean anomaly
 	M = (0.9856 * t) - 3.289;
 	
+	//Sun's true longitude
+	L = M + (1.916 * Math.sin(M)) + (0.020 * Math.sin(2 * M)) + 282.634
+	L = L % 360;
+	
+	//Sun's right ascension
+	RA = Math.atan(0.91764 * Math.tan(L*degToRad)) * radToDeg;
+	RA = RA % 360;
+	
+	RA += ((floor(L / 90)) * 90) - (floor(RA / 90)) * 90;
 }
 
 function getSunset(day, month, year, latitude, longitude)
